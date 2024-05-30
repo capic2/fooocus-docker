@@ -1,5 +1,4 @@
-ARG BASE_IMAGE
-FROM ${BASE_IMAGE}
+FROM "ashleykza/runpod-base:1.3.0-cuda12.1.1-torch2.3.0"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -12,32 +11,27 @@ WORKDIR /
 RUN python3 -m venv --system-site-packages /venv
 
 # Clone the git repo of Fooocus and set version
-ARG FOOOCUS_VERSION
 RUN git clone https://github.com/lllyasviel/Fooocus.git && \
     cd /Fooocus && \
-    git checkout ${FOOOCUS_VERSION}
+    git checkout v2.4.1
 
 # Install the dependencies for Fooocus
-ARG INDEX_URL
-ARG TORCH_VERSION
-ARG XFORMERS_VERSION
 WORKDIR /Fooocus
-ENV TORCH_INDEX_URL=${INDEX_URL}
-ENV TORCH_COMMAND="pip install torch==${TORCH_VERSION} torchvision --index-url ${TORCH_INDEX_URL}"
-ENV XFORMERS_PACKAGE="xformers==${XFORMERS_VERSION}"
+ENV TORCH_INDEX_URL=https://download.pytorch.org/whl/cu121
+ENV TORCH_COMMAND="pip install torch==2.3.0+cu121 torchvision --index-url https://download.pytorch.org/whl/cu121"
+ENV XFORMERS_PACKAGE="xformers==0.0.26.post1"
 RUN source /venv/bin/activate && \
-    ${TORCH_COMMAND} && \
-    pip3 install -r requirements_versions.txt --extra-index-url ${TORCH_INDEX_URL} && \
-    pip3 install ${XFORMERS_PACKAGE} --index-url ${TORCH_INDEX_URL} &&  \
+    pip install torch==2.3.0+cu121 torchvision --index-url https://download.pytorch.org/whl/cu121 && \
+    pip3 install -r requirements_versions.txt --extra-index-url https://download.pytorch.org/whl/cu121 && \
+    pip3 install xformers==0.0.26.post1 --index-url https://download.pytorch.org/whl/cu121 &&  \
     sed '$d' launch.py > setup.py && \
     python3 -m setup && \
     deactivate
 
 # Install CivitAI Model Downloader
-ARG CIVITAI_DOWNLOADER_VERSION
 RUN git clone https://github.com/ashleykleynhans/civitai-downloader.git && \
     cd civitai-downloader && \
-    git checkout tags/${CIVITAI_DOWNLOADER_VERSION} && \
+    git checkout tags/2.1.0 && \
     cp download.py /usr/local/bin/download-model && \
     chmod +x /usr/local/bin/download-model && \
     cd .. && \
@@ -53,12 +47,10 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY fooocus/config.txt /Fooocus/config.txt
 
 # Set template version
-ARG RELEASE
-ENV TEMPLATE_VERSION=${RELEASE}
+ENV TEMPLATE_VERSION=2.4.1
 
 # Set the venv path
-ARG VENV_PATH
-ENV VENV_PATH=${VENV_PATH}
+ENV VENV_PATH=/workspace/venvs/fooocus
 
 # Copy the scripts
 WORKDIR /
