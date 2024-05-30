@@ -9,7 +9,7 @@ ARGS="--listen --port 3001 ${CMDARGS}"
 
 if [[ ${PRESET} ]]
 then
-    ARGS = "${ARGS} --preset ${PRESET}"    
+    ARGS="${ARGS} --preset ${PRESET}"    
 fi
 
 echo "Starting Fooocus using args: ${ARGS}"
