@@ -5,7 +5,7 @@ VENV_PATH=$(cat /workspace/Fooocus/venv_path)
 source ${VENV_PATH}/bin/activate
 cd /workspace/Fooocus
 
-ARGS = "--listen --port 3001 ${CMDARGS}"
+ARGS="--listen --port 3001 ${CMDARGS}"
 
 if [[ ${PRESET} ]]
 then
