@@ -5,14 +5,15 @@ VENV_PATH=$(cat /workspace/Fooocus/venv_path)
 source ${VENV_PATH}/bin/activate
 cd /workspace/Fooocus
 
+ARGS = "--listen --port 3001 ${CMDARGS}"
+
 if [[ ${PRESET} ]]
 then
-    echo "Starting Fooocus using preset: ${PRESET}"
-    nohup python3 entry_with_update.py --listen --port 3001 --preset ${PRESET} > /workspace/logs/fooocus.log 2>&1 &
-else
-    echo "Starting Fooocus using defaults"
-    nohup python3 entry_with_update.py --listen --port 3001 > /workspace/logs/fooocus.log 2>&1 &
+    ARGS = "${ARGS} --preset ${PRESET}"    
 fi
+
+echo "Starting Fooocus using args: ${ARGS}"
+nohup python3 entry_with_update.py ${ARGS} > /workspace/logs/fooocus.log 2>&1 &
 
 echo "Fooocus started"
 echo "Log file: /workspace/logs/fooocus.log"
