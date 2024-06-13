@@ -15,7 +15,7 @@
 * [Fooocus](
   https://github.com/lllyasviel/Fooocus) 2.4.3
 * Torch 2.3.0
-* xformers 0.0.26
+* xformers 0.0.26.post1
 * Jupyter Lab
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [OhMyRunPod](https://github.com/kodxana/OhMyRunPod)
@@ -86,12 +86,13 @@ You can obviously substitute the image name and tag with your own.
 
 ## Environment Variables
 
-| Variable             | Description                                  | Default                   |
-|----------------------|----------------------------------------------|---------------------------|
-| VENV_PATH            | Set the path for the Python venv for the app | /workspace/venvs/fooocus  |
-| JUPYTER_LAB_PASSWORD | Set a password for Jupyter lab               | not set - no password     |
-| DISABLE_AUTOLAUNCH   | Disable Web UIs from launching automatically | (not set)                 |
-| PRESET               | Fooocus Preset (anime/realistic)             | (not set)                 |
+| Variable             | Description                                      | Default                   |
+|----------------------|--------------------------------------------------|---------------------------|
+| VENV_PATH            | Set the path for the Python venv for the app     | /workspace/venvs/fooocus  |
+| JUPYTER_LAB_PASSWORD | Set a password for Jupyter lab                   | not set - no password     |
+| DISABLE_AUTOLAUNCH   | Disable Web UIs from launching automatically     | (not set)                 |
+| DISABLE_SYNC         | Disable syncing if using a RunPod network volume | (not set)                 |
+| PRESET               | Fooocus Preset (anime/realistic)                 | (not set)                 |
 
 ## Logs
 
