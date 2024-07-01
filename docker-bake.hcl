@@ -23,7 +23,7 @@ variable "BASE_IMAGE_REPOSITORY" {
 }
 
 variable "BASE_IMAGE_VERSION" {
-    default = "1.4.0"
+    default = "1.7.0"
 }
 
 variable "CUDA_VERSION" {
@@ -45,6 +45,5 @@ target "default" {
         XFORMERS_VERSION = "0.0.26.post1"
         FOOOCUS_VERSION = "v${RELEASE}"
         CIVITAI_DOWNLOADER_VERSION = "2.1.0"
-        VENV_PATH = "/workspace/venvs/fooocus"
     }
 }

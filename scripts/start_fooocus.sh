@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 export HF_HOME="/workspace"
-VENV_PATH=$(cat /workspace/Fooocus/venv_path)
-source ${VENV_PATH}/bin/activate
+source /venv/bin/activate
 cd /workspace/Fooocus
 
 if [[ ${PRESET} ]]
