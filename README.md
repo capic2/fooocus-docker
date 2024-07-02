@@ -72,7 +72,6 @@ docker run -d \
   -p 7777:7777 \
   -p 8888:8888 \
   -p 2999:2999 \
-  -e VENV_PATH="/workspace/venvs/fooocus" \
   ashleykza/fooocus:latest
 ```
 
