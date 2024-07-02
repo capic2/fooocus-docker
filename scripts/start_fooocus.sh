@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export PYTHONUNBUFFERED=1
 export HF_HOME="/workspace"
 source /venv/bin/activate
 cd /workspace/Fooocus
