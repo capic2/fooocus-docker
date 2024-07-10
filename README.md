@@ -14,8 +14,8 @@
 * Python 3.10.12
 * [Fooocus](
   https://github.com/lllyasviel/Fooocus) 2.4.3
-* Torch 2.3.0
-* xformers 0.0.26.post1
+* Torch 2.3.1
+* xformers 0.0.27
 * [Jupyter Lab](https://github.com/jupyterlab/jupyterlab)
 * [code-server](https://github.com/coder/code-server)
 * [runpodctl](https://github.com/runpod/runpodctl)
