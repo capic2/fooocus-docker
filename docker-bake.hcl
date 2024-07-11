@@ -27,7 +27,7 @@ variable "BASE_IMAGE_VERSION" {
 }
 
 variable "CUDA_VERSION" {
-    default = "12.1.1"
+    default = "12.4.1"
 }
 
 variable "TORCH_VERSION" {
